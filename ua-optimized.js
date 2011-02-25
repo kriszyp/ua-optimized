@@ -1,18 +1,23 @@
 /*
  * ua-optimized is an AMD plugin to enable branching to different built JavaScript layers
 */
-define([], function(){
+define(["./ua-builds"], function(uaBuilds){
 	if(define.isBuilt){
 		// if we are in a build, we sniff the user agent and use it find the appropriate layer 
 		// with baked-in known feature-set 
 		var ua = navigator.userAgent;
-		var layer, version;
-		if(ua.match(/Trident/)){
-			layer = "_trident";
-		}else if((version = ua.match(/WebKit\/(\d)+/)) && version[1] > 300){
-			layer = "_webkit";	
-		}else{
-			layer = ""; // nothing known about browser, use full run-time feature detection test set
+		var layer = "", version;
+		uaBuilds = uaBuilds.builds;
+		for(var i = 0; i < uaBuilds.length; i++){
+			var build = uaBuilds[i];
+			var match = ua.match(build.match);
+			if(match){
+				var version = match[1];
+				if(parseFloat(version) >= build.version){
+					layer = "-" + build.name;
+					break;
+				}
+			}
 		}
 	}
 	// AMD plugin, provides load method

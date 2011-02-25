@@ -1,6 +1,11 @@
-var userAgents = require("./user-agents");
 var http = require("http");
 var client = http.createClient(80, "dante.dojotoolkit.org");
+var userAgents;
+// create a define to get the builds from the 
+define = function(builds){
+	userAgents = builds.builds;
+};
+require("../ua-builds");
 var request = client.request("GET", "/hasjs/tests/results.data", {
 	Host: "dante.dojotoolkit.org"
 });
@@ -46,7 +51,7 @@ request.on("response", function(response){
 		userAgents.forEach(function(agent){
 			agent.match = agent.match.toString();
 		});
-		require("fs").writeFile('profiles.js', "define({profiles:" + JSON.stringify(userAgents) + "});", function (err) {
+		require("fs").writeFile('profiles.js', 'define({"profiles":' + JSON.stringify(userAgents) + "});", function (err) {
 			if (err) throw err;
 			console.log('Done');
 		});

@@ -1,67 +1,71 @@
-module.exports = [
+/* This file defines the different user agents that we will build on, we can modify this to 
+ * create more or less user-agent profiles. It will select on the first build profile that 
+ * matches the user agent string. */
+
+define({builds:[
 	{
 		match: /BlackBerry.+AppleWebKit\/([\d\.]+)/,
-		name: "BlackBerry",
+		name: "blackberry",
 		version: 400
 	},
 	{
 		match: /iP.+AppleWebKit\/([\d\.]+)/,
-		name: "Newer iOS device",
+		name: "ios4",
 		version: 532
 	},
 	{
 		match: /iP.+AppleWebKit\/([\d\.]+)/,
-		name: "iOS device",
+		name: "ios",
 		version: 400
 	},
 	{
 		match: /AppleWebKit\/([\d\.]+).+Mobile/,
-		name: "Other mobile WebKit",
+		name: "mobile-webkit",
 		version: 400
 	},
 	{
 		match: /Chrome\/([\d\.]+)/,
-		name: "Chrome",
+		name: "chrome",
 		version: 8
 	},
 	{
 		match: /AppleWebKit\/([\d\.]+)/,
-		name: "Desktop WebKit",
+		name: "webkit",
 		version: 400
 	},
 	{
 		match: /Firefox\/([\d\.]+)/,
-		name: "Firefox 4",
+		name: "ff4",
 		version: 4
 	},
 	{
 		match: /Firefox\/([\d\.]+)/,
-		name: "Firefox 3",
+		name: "ff3",
 		version: 3
 	},
 	{
 		match: /Presto\/([\d\.]+)/,
-		name: "Opera 11",
+		name: "opera11",
 		version: 2.7
 	},
 	{
 		match: /Trident\/([\d\.]+)/,
-		name: "IE 9",
+		name: "ie9",
 		version: 5
 	},
 	{
 		match: /Trident\/([\d\.]+)/,
-		name: "IE 8",
+		name: "ie8",
 		version: 4
 	},
 	{
 		match: /MSIE ([\d\.]+)/,
-		name: "IE 7",
+		name: "ie7",
 		version: 7
 	},
 	{
 		match: /\d/,
-		name: "Any other old browser",
+		name: "default",
 		version: 0
 	}
-];
+]});
