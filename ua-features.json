@@ -1,5 +1,0 @@
-{
-	"#": "This file would probably be auto-generated from a database of UA information about known features",
-	"trident" : { "just-about-anything": false},
-	"webkit" : { "just-about-anything": true}
-}
